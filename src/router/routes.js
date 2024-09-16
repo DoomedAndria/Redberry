@@ -1,5 +1,3 @@
-import {RouterView} from "vue-router";
-
 const routes = [
   {
     path: '/',
@@ -8,7 +6,7 @@ const routes = [
       {
         path: '',
         name: 'Home',
-        component: () => import('../components/Header.vue')
+        component: () => import('../pages/Home.vue')
       }
     ]
   },
