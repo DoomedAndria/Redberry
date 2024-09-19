@@ -1,10 +1,10 @@
 <script setup>
 import FilterButton from "./FilterButton.vue";
-import RegionFilter from "./RegionFilter.vue";
+import {RegionFilter,PriceFilter} from "./index.js";
 
 const filters = [
   {title: 'რეგიონი', component: RegionFilter},
-  {title: 'საფასო კატეგორია', component: null},
+  {title: 'საფასო კატეგორია', component: PriceFilter},
   {title: 'ფართობი', component: null},
   {title: 'საძინებლების რაოდენობა', component: null}
 ]

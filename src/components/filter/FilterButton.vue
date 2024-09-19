@@ -27,7 +27,6 @@ const applyFilter = () => {
   if (child.value) {
     child.value.applyFilter()
   }
-  closeDropdown()
 }
 const toggleRotation = () => {
   isOpen.value = !isOpen.value
@@ -60,9 +59,9 @@ onBeforeUnmount(() => {
 
     <Transition>
       <div ref="dropdown" v-if="isOpen"
-           class="transition-all duration-300 bg-[#ffffff] absolute top-[55px] left-0 p-[24px] border border-bd_cl_0 rounded-[10px]">
+           class="transition-all duration-300 bg-[#ffffff] absolute top-[55px] left-0 p-[24px] border border-bd_cl_0 rounded-[10px] custom_shadow">
 
-        <component v-if="component" ref="child" :is="props.component"/>
+        <component v-if="component" ref="child" :is="props.component" :closeDropdown="closeDropdown"/>
 
         <div class="flex justify-end mt-[32px]">
           <button
@@ -81,6 +80,10 @@ onBeforeUnmount(() => {
 
 
 <style scoped>
+.custom_shadow{
+  box-shadow: 5px 5px 12px 0px rgba(2, 21, 38, 0.08);
+}
+
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;

@@ -15,6 +15,7 @@ export default {
 
 
       'bd_cl_0': '#DBDBDB',
+      'bd_cl_1': '#808A93',
       'tx_cl_0': '#021526',
       'bg_btn_0': '#F3F3F3',
       'cl_main': '#F93B1D',

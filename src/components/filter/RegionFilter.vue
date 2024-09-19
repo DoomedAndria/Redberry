@@ -3,6 +3,14 @@ import {inject, onMounted, ref} from "vue";
 import {useRoute, useRouter} from "vue-router";
 
 
+const props = defineProps({
+  closeDropdown: {
+    required: true,
+    type: Function
+  }
+})
+
+
 const regions = inject('regions');
 const router = useRouter();
 const route = useRoute();
