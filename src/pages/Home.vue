@@ -3,6 +3,7 @@ import {useRegion} from "../composables/useRegion.js";
 import {onMounted, ref} from "vue";
 import Filter from "../components/filter/Filter.vue";
 
+
 const {
   regions,
   filteredCities,
@@ -12,7 +13,6 @@ const {
 
 onMounted(async () => {
   await getRegionsAndCities()
-
 })
 
 const handleCheck = (e) => {
@@ -25,14 +25,13 @@ const handleCheck = (e) => {
 }
 
 const show = ref(true)
+
 </script>
 
 
 
 
 <template>
-
-
   <Filter/>
 
 

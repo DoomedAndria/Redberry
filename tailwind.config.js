@@ -6,14 +6,19 @@ export default {
   ],
   theme: {
     extend: {
-      padding:{
+      padding: {
         'g': '162px'
       }
     },
     colors: {
+      'white': '#ffffff',
+
+
       'bd_cl_0': '#DBDBDB',
       'tx_cl_0': '#021526',
-      'bg_btn_0': '#F3F3F3'
+      'bg_btn_0': '#F3F3F3',
+      'cl_main': '#F93B1D',
+      'cl_main_h': '#DF3014'
     }
   },
   plugins: [],

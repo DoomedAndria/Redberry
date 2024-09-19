@@ -1,0 +1,81 @@
+<script setup>
+import {inject, onMounted, ref} from "vue";
+import {useRoute, useRouter} from "vue-router";
+
+const props = defineProps({
+  closeDropdown: {
+    type: Function,
+    required: true
+  }
+})
+
+const regions = inject('regions');
+const router = useRouter();
+const route = useRoute();
+const checkedRegions = ref([]);
+
+onMounted(() => {
+  const queryRegions = route.query.regions;
+  if (queryRegions) {
+    queryRegions.split(',')
+        .forEach(id => {
+          const region = regions.value.find(r => r.id === Number(id));
+          if (region) checkedRegions.value.push(region);
+        });
+  }
+});
+
+const toggleRegionSelection = (event) => {
+  const region = JSON.parse(event.target.value);
+  if (event.target.checked) {
+    checkedRegions.value.push(region);
+  } else {
+    checkedRegions.value = checkedRegions.value.filter(r => r.id !== region.id);
+  }
+};
+
+const applyFilter = () => {
+  const query = {
+    ...route.query,
+    regions: checkedRegions.value.map(r => r.id).join(',')
+  };
+  router.push({query});
+  props.closeDropdown()
+};
+
+const isRegionChecked = (region) => checkedRegions.value.some(r => r.id === region.id);
+
+</script>
+
+<template>
+  <div class="flex flex-col gap-[24px]">
+    <p class="text-tx_cl_0 text-[16px] font-medium">რეგიონის მიხედვით</p>
+    <div class="flex flex-wrap gap-x-[50px] gap-y-[16px]  w-[679px] text-tx_cl_0">
+      <div v-if="regions" v-for="(region, index) in regions" :key="index" class="flex gap-1 items-center w-[191px]">
+        <input
+            @change="toggleRegionSelection"
+            :value="JSON.stringify(region)"
+            :checked="isRegionChecked(region)"
+            type="checkbox"
+            class="w-[20px] h-[20px] border-bd_cl_0 custom_checkbox"
+        />
+        <div v-text="region.name" class="text-[14px]"/>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-end mt-[32px]">
+    <button
+        @click="applyFilter"
+        class="text-white text-[14px] font-medium bg-cl_main px-[14px] py-[8px]
+         rounded-[8px] hover:bg-cl_main_h transition-colors duration-300"
+    >
+      არჩევა
+    </button>
+  </div>
+</template>
+
+<style scoped>
+.custom_checkbox {
+  accent-color: #45A849;
+}
+</style>
