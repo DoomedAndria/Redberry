@@ -15,6 +15,7 @@ const props = defineProps({
 const isOpen = ref(false)
 const button = ref(null)
 const dropdown = ref(null)
+const child = ref(null)
 
 
 const arrowClass = computed(() => isOpen.value ? 'rotate-180' : '')
@@ -22,7 +23,12 @@ const arrowClass = computed(() => isOpen.value ? 'rotate-180' : '')
 const closeDropdown = () => {
   isOpen.value = false
 }
-
+const applyFilter = () => {
+  if (child.value) {
+    child.value.applyFilter()
+  }
+  closeDropdown()
+}
 const toggleRotation = () => {
   isOpen.value = !isOpen.value
 }
@@ -56,10 +62,20 @@ onBeforeUnmount(() => {
       <div ref="dropdown" v-if="isOpen"
            class="transition-all duration-300 bg-[#ffffff] absolute top-[55px] left-0 p-[24px] border border-bd_cl_0 rounded-[10px]">
 
-        <component v-if="component" :is="props.component" :closeDropdown="closeDropdown"/>
+        <component v-if="component" ref="child" :is="props.component"/>
+
+        <div class="flex justify-end mt-[32px]">
+          <button
+              @click="applyFilter"
+              class="text-white text-[14px] font-medium bg-cl_main px-[14px] py-[8px] rounded-[8px] hover:bg-cl_main_h transition-colors duration-300"
+          >
+            არჩევა
+          </button>
+        </div>
 
       </div>
     </Transition>
+
   </div>
 </template>
 

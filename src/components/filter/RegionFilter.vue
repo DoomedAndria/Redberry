@@ -2,12 +2,6 @@
 import {inject, onMounted, ref} from "vue";
 import {useRoute, useRouter} from "vue-router";
 
-const props = defineProps({
-  closeDropdown: {
-    type: Function,
-    required: true
-  }
-})
 
 const regions = inject('regions');
 const router = useRouter();
@@ -43,6 +37,10 @@ const applyFilter = () => {
   props.closeDropdown()
 };
 
+defineExpose({
+  applyFilter
+})
+
 const isRegionChecked = (region) => checkedRegions.value.some(r => r.id === region.id);
 
 </script>
@@ -62,15 +60,6 @@ const isRegionChecked = (region) => checkedRegions.value.some(r => r.id === regi
         <div v-text="region.name" class="text-[14px]"/>
       </div>
     </div>
-  </div>
-  <div class="flex justify-end mt-[32px]">
-    <button
-        @click="applyFilter"
-        class="text-white text-[14px] font-medium bg-cl_main px-[14px] py-[8px]
-         rounded-[8px] hover:bg-cl_main_h transition-colors duration-300"
-    >
-      არჩევა
-    </button>
   </div>
 </template>
 
