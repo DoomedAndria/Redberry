@@ -1,6 +1,6 @@
 <script setup>
 import FilterButton from "./FilterButton.vue";
-import {RegionFilter, PriceFilter, AreaFilter, BedroomFilter} from "./index.js";
+import {RegionFilter, PriceFilter, AreaFilter, BedroomFilter,FilterTags} from "./index.js";
 
 const filters = [
   {title: 'რეგიონი', component: RegionFilter},
@@ -28,4 +28,5 @@ const filters = [
       </button>
     </div>
   </div>
+  <FilterTags/>
 </template>

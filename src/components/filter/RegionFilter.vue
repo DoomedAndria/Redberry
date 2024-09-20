@@ -19,11 +19,8 @@ const checkedRegions = ref([]);
 onMounted(() => {
   const queryRegions = route.query.regions;
   if (queryRegions) {
-    queryRegions.split(',')
-        .forEach(id => {
-          const region = regions.value.find(r => r.id === Number(id));
-          if (region) checkedRegions.value.push(region);
-        });
+    checkedRegions.value = regions.value
+        .filter(r => queryRegions.split(',').includes(String(r.id)))
   }
 });
 

@@ -42,10 +42,8 @@ const checkValidity = () => {
 const applyFilter = () => {
   const query = {}
   if (checkValidity()) {
-    if (minArea.value)
-      query.minArea = minArea.value
-    if (maxArea.value)
-      query.maxArea = maxArea.value
+    query.minArea = minArea.value || ''
+    query.maxArea = maxArea.value || ''
 
     router.push({query: {...route.query, ...query}})
     props.closeDropdown()
@@ -57,10 +55,10 @@ defineExpose({
   applyFilter
 })
 
-const classes = computed(()=>{
+const classes = computed(() => {
   return {
-    inputBorder: isNotValid.value?'border-[#F93B1D]':'border-bd_cl_1',
-    errorMessage: isNotValid.value?'opacity-1':'opacity-0'
+    inputBorder: isNotValid.value ? 'border-[#F93B1D]' : 'border-bd_cl_1',
+    errorMessage: isNotValid.value ? 'opacity-1' : 'opacity-0'
   }
 })
 
@@ -121,7 +119,7 @@ const classes = computed(()=>{
           <p
               class="cursor-pointer"
               v-for="p in predefined_areas"
-              @click="()=>maxArea=p" >
+              @click="()=>maxArea=p">
             {{ p.toLocaleString() }} მ<sup>2</sup>
           </p>
         </div>
@@ -135,6 +133,7 @@ const classes = computed(()=>{
 .ipt {
   @apply w-[155px] border rounded-[6px] p-[10px] h-[42px] focus:outline-none
 }
+
 .custom-letter {
   @apply absolute right-[10px] top-[50%] translate-y-[-50%]
 }

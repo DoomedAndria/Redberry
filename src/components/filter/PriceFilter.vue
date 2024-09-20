@@ -42,10 +42,8 @@ const checkValidity = () => {
 const applyFilter = () => {
   const query = {}
   if (checkValidity()) {
-    if (minPrice.value)
-      query.minPrice = minPrice.value
-    if (maxPrice.value)
-      query.maxPrice = maxPrice.value
+    query.minPrice = minPrice.value || ''
+    query.maxPrice = maxPrice.value || ''
 
     router.push({query: {...route.query, ...query}})
     props.closeDropdown()

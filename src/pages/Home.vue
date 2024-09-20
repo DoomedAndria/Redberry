@@ -1,30 +1,21 @@
 <script setup>
 import {useRegion} from "../composables/useRegion.js";
-import {onMounted, ref} from "vue";
+import {onMounted, provide, ref} from "vue";
 import Filter from "../components/filter/Filter.vue";
 
 
-const {
-  regions,
-  filteredCities,
-  regionIds,
-  getRegionsAndCities
-} = useRegion()
 
-onMounted(async () => {
-  await getRegionsAndCities()
-})
 
-const handleCheck = (e) => {
-  if (e.target.checked) {
-    regionIds.value.push(e.target.value)
-
-  } else {
-    regionIds.value = regionIds.value.filter(r => r !== e.target.value)
-  }
-}
-
-const show = ref(true)
+// const handleCheck = (e) => {
+//   if (e.target.checked) {
+//     regionIds.value.push(e.target.value)
+//
+//   } else {
+//     regionIds.value = regionIds.value.filter(r => r !== e.target.value)
+//   }
+// }
+//
+// const show = ref(true)
 
 </script>
 
