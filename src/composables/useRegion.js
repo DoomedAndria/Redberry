@@ -12,11 +12,8 @@ export const useRegion = () => {
   const getRegionsAndCities = async () => {
     try {
       let response = await axios.get('regions')
-
       regions.value = response.data
-
       response = await axios.get('cities')
-
       cities.value = response.data
     } catch (error) {
       console.log(error)

@@ -34,11 +34,11 @@ const toggleRegionSelection = (event) => {
 };
 
 const applyFilter = () => {
-  const query = {
-    ...route.query,
-    regions: checkedRegions.value.map(r => r.id).join(',')
-  };
-  router.push({query});
+  const {regions, ...query} = route.query
+  if (checkedRegions.value.map(r => r.id).join(','))
+    router.push({query: {...query, regions: checkedRegions.value.map(r => r.id).join(',')}});
+  else
+    router.push({query})
   props.closeDropdown()
 };
 

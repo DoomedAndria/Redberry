@@ -59,7 +59,7 @@ onBeforeUnmount(() => {
 
     <Transition>
       <div ref="dropdown" v-if="isOpen"
-           class="transition-all duration-300 bg-[#ffffff] absolute top-[55px] left-0 p-[24px] border border-bd_cl_0 rounded-[10px] custom_shadow">
+           class="z-10 transition-all duration-300 bg-[#ffffff] absolute top-[55px] left-0 p-[24px] border border-bd_cl_0 rounded-[10px] custom_shadow">
 
         <component v-if="component" ref="child" :is="props.component" :closeDropdown="closeDropdown"/>
 

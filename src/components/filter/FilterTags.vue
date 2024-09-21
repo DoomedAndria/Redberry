@@ -60,7 +60,11 @@ const removeRegionTag = (id) => {
       .filter(r => r.id !== id)
       .map(r => r.id)
       .join(',');
-  router.push({query: {...route.query, regions: updatedRegions}});
+  const {regions,...query} = route.query
+  if(updatedRegions)
+    router.push({query: {...route.query, regions: updatedRegions}});
+  else
+    router.push({query})
 };
 
 const removePriceTag = () => {

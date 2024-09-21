@@ -28,5 +28,7 @@ const filters = [
       </button>
     </div>
   </div>
+
   <FilterTags/>
+
 </template>
