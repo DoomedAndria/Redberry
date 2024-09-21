@@ -13,6 +13,7 @@ const props = defineProps({
 })
 
 const {
+  id,
   image,
   price,
   address,
@@ -28,6 +29,7 @@ const {
 
 
 <template>
+  <router-link :to="`/listings/${id}`">
   <div class="flex flex-col  card_shadow rounded-[14px] cursor-pointer hover:scale-[102%] transition-transform duration-300">
     <div class="relative">
       <img class="h-[307px] object-cover rounded-t-[14px]" :src="image" alt="სურათი"/>
@@ -68,6 +70,7 @@ const {
 
     </div>
   </div>
+  </router-link>
 </template>
 
 

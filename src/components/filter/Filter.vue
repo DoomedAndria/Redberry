@@ -1,6 +1,8 @@
 <script setup>
 import FilterButton from "./FilterButton.vue";
 import {RegionFilter, PriceFilter, AreaFilter, BedroomFilter,FilterTags} from "./index.js";
+import CreateAgent from "../CreateAgent.vue";
+import {ref} from "vue";
 
 const filters = [
   {title: 'რეგიონი', component: RegionFilter},
@@ -8,6 +10,11 @@ const filters = [
   {title: 'ფართობი', component: AreaFilter},
   {title: 'საძინებლების რაოდენობა', component: BedroomFilter}
 ]
+
+const show = ref(false)
+
+const open = () => show.value = true
+const close = () => show.value = false
 
 </script>
 
@@ -19,13 +26,15 @@ const filters = [
     </div>
 
     <div class="flex items-center gap-4">
-      <button class="flex items-center gap-1 rounded-lg px-4 py-2.5 bg-[#F93B1D] border border-[#F93B1D] text-white font-medium hover:bg-[#DF3014] transition-colors duration-300">
+      <router-link to="/create-listing" class="flex items-center gap-1 rounded-lg px-4 py-2.5 bg-[#F93B1D] border border-[#F93B1D] text-white font-medium hover:bg-[#DF3014] transition-colors duration-300">
         <span class="text-xl">+</span> ლისტინგის დამატება
-      </button>
+      </router-link>
 
-      <button  class="flex items-center gap-1 rounded-lg px-4 py-2.5 border text-[#F93B1D] border-[#F93B1D] font-medium hover:bg-[#F93B1D] hover:text-[#ffffff] transition-colors duration-300">
+      <button @click="open" class="flex items-center gap-1 rounded-lg px-4 py-2.5 border text-[#F93B1D] border-[#F93B1D] font-medium hover:bg-[#F93B1D] hover:text-[#ffffff] transition-colors duration-300">
         <span class="text-xl">+</span> აგენტის დამატება
       </button>
+
+      <create-agent v-if="show" @close="close"/>
     </div>
   </div>
 

@@ -15,7 +15,7 @@ defineProps({
 </script>
 
 <template>
-  <carousel items-to-show="4" snap-align="start" :wrap-around="true">
+  <carousel :items-to-show="4" snap-align="start" :wrap-around="true">
     <slide v-for="(listing,index) in listings" :key="index">
       <ListingCard :listing="listing"/>
     </slide>

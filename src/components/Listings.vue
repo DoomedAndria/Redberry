@@ -2,23 +2,27 @@
 
 import {inject, onMounted, ref, watch} from "vue";
 import ListingCard from "./ListingCard.vue";
-import Carousel from "./Carousel.vue";
 import {useRoute} from "vue-router";
 
 const route = useRoute()
 
 const listings = inject('listings')
+const getListings = inject('getListings')
 const query = ref({})
 const filteredListings = ref()
 
-onMounted(()=>{
+onMounted(async () => {
   parseQuery()
-  watch(listings,(nListings)=>{
+  if (listings.value) {
+    await getListings();
+    applyFilters(listings.value)
+  }
+  watch(listings, (nListings) => {
     applyFilters(nListings)
   })
 })
 
-watch(route, ()=>{
+watch(route, () => {
   parseQuery()
   applyFilters(listings.value)
 })
@@ -62,12 +66,12 @@ const applyFilters = (listings) => {
 
 <template>
   <div v-if="filteredListings" class="w-full grid grid-cols-4 gap-[20px] mt-[32px]">
-      <ListingCard v-for="listing in filteredListings" :key="listing.id" :listing="listing"/>
+    <ListingCard v-for="listing in filteredListings" :key="listing.id" :listing="listing"/>
   </div>
 
-<!--  <Carousel v-if="listings" class="mt-10" :listings="listings"/>-->
+  <!--  <Carousel v-if="listings" class="mt-10" :listings="listings"/>-->
   <div v-else class="absolute top-0 left-0 w-screen h-screen flex justify-center items-center">
-    <h1 class="text-5xl">იტვირთება...</h1>
+    <h1 class="text-sm">იტვირთება...</h1>
   </div>
 </template>
 

@@ -3,7 +3,7 @@ import {ref, watch,provide} from "vue";
 
 
 
-export const useRegion = () => {
+export const useRegions = () => {
   const regions = ref()
   provide('regions',regions)
   const cities = ref()
